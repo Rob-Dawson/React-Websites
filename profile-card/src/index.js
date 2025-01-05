@@ -5,8 +5,8 @@ import "./style.css";
 const skillList = [
   {
     skill: "Robotics",
-    level: "beginner",
-    background: "#FF0000",
+    level: "advanced",
+    background: "#FF0",
   },
   {
     skill: "Android",
@@ -17,6 +17,21 @@ const skillList = [
     skill: "Web",
     level: "advanced",
     background: "#00FF",
+  },
+  {
+    skill: "React",
+    level: "beginner",
+    background: "#FF00FF",
+  },
+  {
+    skill: "Machine Learning",
+    level: "beginner",
+    background: "#FAA",
+  },
+  {
+    skill: "Web Development",
+    level: "beginner",
+    background: "#0F0",
   },
 ];
 
@@ -52,21 +67,13 @@ function Intro() {
 function SkillList() {
   return (
     <div className="skill-list">
-      <Skill
-        skill={skillList.at(0).skill}
-        level={skillList.at(0).level}
-        background={skillList.at(0).background}
-      />
-      <Skill
-        skill={skillList.at(1).skill}
-        level={skillList.at(1).level}
-        background={skillList.at(1).background}
-      />
-      <Skill
-        skill={skillList.at(2).skill}
-        level={skillList.at(2).level}
-        background={skillList.at(2).background}
-      />
+      {skillList.map((skill) => (
+        <Skill
+          skill={skill.skill}
+          background={skill.background}
+          level={skill.level}
+        />
+      ))}
     </div>
   );
 }
