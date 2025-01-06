@@ -78,11 +78,10 @@ function SkillList() {
   );
 }
 
-function Skill(props) {
-  const level = props.level;
+function Skill({ skill, background, level }) {
   return (
-    <div style={{ background: props.background }} className="skill">
-      <p>{props.skill}</p>
+    <div style={{ background: background }} className="skill">
+      <p>{skill}</p>
       <span>
         {level === "beginner" && "👶"}
         {level === "intermediate" && "👍"}
