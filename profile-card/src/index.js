@@ -1,37 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
-
-const skillList = [
+const skillslist = [
   {
-    skill: "Robotics",
+    skill: "robotics",
     level: "advanced",
-    background: "#FF0",
-  },
-  {
-    skill: "Android",
-    level: "intermediate",
-    background: "#00FF00",
-  },
-  {
-    skill: "Web",
-    level: "advanced",
-    background: "#00FF",
-  },
-  {
-    skill: "React",
-    level: "beginner",
     background: "#FF00FF",
   },
   {
     skill: "Machine Learning",
-    level: "beginner",
-    background: "#FAA",
+    level: "intermediate",
+    background: "#FFFF00",
   },
   {
     skill: "Web Development",
+    level: "intermediate",
+    background: "#0000FF",
+  },
+  {
+    skill: "React",
     level: "beginner",
-    background: "#0F0",
+    background: "#FFAFA1",
   },
 ];
 
@@ -41,56 +30,57 @@ function App() {
       <Avatar />
       <div className="data">
         <Intro />
-        <SkillList />
+        <SkillsList />
       </div>
     </div>
   );
 }
 
 function Avatar() {
-  return (
-    <div className="avatar">
-      <img className="avatar" src="spock.jpg" alt="spock"></img>
-    </div>
-  );
+  return <img className="avatar" src="spock.jpg" alt="spock" />;
 }
 
 function Intro() {
   return (
     <div>
       <h1>Spock</h1>
-      <p>I do stuff with stuff. The stuff i do i like and do other stuff</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+        scelerisque nibh eget orci luctus posuere a non odio. Morbi commodo
+        felis ante, nec vulputate lorem rutrum eu. Fusce id posuere lectus.
+      </p>
     </div>
   );
 }
 
-function SkillList() {
+function SkillsList() {
   return (
     <div className="skill-list">
-      {skillList.map((skill) => (
+      {skillslist.map((skills) => (
         <Skill
-          skill={skill.skill}
-          background={skill.background}
-          level={skill.level}
+          skill={skills.skill}
+          level={skills.level}
+          background={skills.background}
         />
       ))}
     </div>
   );
 }
 
-function Skill({ skill, background, level }) {
+function Skill({ skill, level, background }) {
   return (
-    <div style={{ background: background }} className="skill">
-      <p>{skill}</p>
-      <span>
-        {level === "beginner" && "👶"}
-        {level === "intermediate" && "👍"}
-        {level === "advanced" && "💪"}
-      </span>
+    <div className="skill" style={{ backgroundColor: background }}>
+      {
+        <span>
+          {skill}
+          {level === "beginner" && "👶"}
+          {level === "intermediate" && "👍"}
+          {level === "advanced" && "💪"}
+        </span>
+      }
     </div>
   );
 }
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
