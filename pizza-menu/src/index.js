@@ -66,14 +66,20 @@ const Header = () => {
 };
 
 const Menu = () => {
+  const pizzas = [];
+  const numPizzas = pizzaData.length;
   return (
     <div className="menu">
       <h2>Our Menu</h2>
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObj={pizza} key={pizza.name} />
-        ))}
-      </ul>
+      {numPizzas > 0 ? (
+        <ul className="pizzas">
+          {pizzaData.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      ) : (
+        <p>We're still working on our menu</p>
+      )}
     </div>
   );
 };
@@ -82,7 +88,7 @@ function Pizza(props) {
   console.log(props);
   return (
     <div className="pizza">
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.pname} />
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.photoName} />
       <div>
         <h3>{props.pizzaObj.name}</h3>
         <p>{props.pizzaObj.ingredients}</p>
@@ -108,8 +114,19 @@ const Footer = () => {
   const isOpen = currentHour >= openHour && currentHour < closedHour;
   console.log(isOpen);
   return (
-    <footer>
-      The current time is: <Time />. We're Open
+    <footer className="footer">
+      <Time />
+
+      {isOpen ? (
+        <div className="order">
+          <span>We are open until {closedHour}</span>
+          <button className="btn">Order</button>
+        </div>
+      ) : (
+        <p>
+          We will be open between {openHour} and {closedHour}
+        </p>
+      )}
     </footer>
   );
 };
