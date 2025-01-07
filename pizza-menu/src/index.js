@@ -84,27 +84,15 @@ const Menu = () => {
   return (
     <div className="menu">
       <h2>Our Menu</h2>
-      <Pizza
-        name={pizzaData.at(0).name}
-        ingredient={pizzaData.at(0).ingredients}
-        price={pizzaData.at(0).price}
-        photoName={pizzaData.at(0).photoName}
-        soldOut={pizzaData.at(0).soldOut}
-      />
-      <Pizza
-        name={pizzaData.at(1).name}
-        ingredient={pizzaData.at(1).ingredients}
-        price={pizzaData.at(1).price}
-        photoName={pizzaData.at(1).photoName}
-        soldOut={pizzaData.at(1).soldOut}
-      />
-      <Pizza
-        name={pizzaData.at(2).name}
-        ingredient={pizzaData.at(2).ingredients}
-        price={pizzaData.at(2).price}
-        photoName={pizzaData.at(2).photoName}
-        soldOut={pizzaData.at(2).soldOut}
-      />
+      {pizzaData.map((pizza) => (
+        <Pizza
+          name={pizza.name}
+          ingredient={pizza.ingredients}
+          price={pizza.price}
+          photoName={pizza.photoName}
+          soldOut={pizza.soldOut}
+        />
+      ))}
     </div>
   );
 };
