@@ -57,21 +57,6 @@ function App() {
     </div>
   );
 }
-
-function Pizza(props) {
-  console.log(props);
-  return (
-    <div className="pizza">
-      <img src={props.photoName} alt={props.name} />
-      <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredients}</p>
-      </div>
-      <span>{props.price + 3}</span>
-    </div>
-  );
-}
-
 const Header = () => {
   return (
     <header className="header">
@@ -84,18 +69,28 @@ const Menu = () => {
   return (
     <div className="menu">
       <h2>Our Menu</h2>
-      {pizzaData.map((pizza) => (
-        <Pizza
-          name={pizza.name}
-          ingredient={pizza.ingredients}
-          price={pizza.price}
-          photoName={pizza.photoName}
-          soldOut={pizza.soldOut}
-        />
-      ))}
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
     </div>
   );
 };
+
+function Pizza(props) {
+  console.log(props);
+  return (
+    <div className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.pname} />
+      <div>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+      </div>
+      <span>{props.pizzaObj.price + 3}</span>
+    </div>
+  );
+}
 
 function Time() {
   const [time, setTime] = useState(new Date());
