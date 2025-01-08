@@ -83,7 +83,7 @@ const Menu = () => {
   );
 };
 
-function Pizza(pizzaObj) {
+function Pizza({ pizzaObj }) {
   console.log(pizzaObj);
 
   return (
