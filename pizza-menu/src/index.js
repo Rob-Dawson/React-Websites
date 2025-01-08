@@ -86,8 +86,9 @@ const Menu = () => {
 
 function Pizza(props) {
   console.log(props);
+
   return (
-    <div className="pizza">
+    <div className={`pizza ${props.pizzaObj.soldOut ? "sold-out" : " "}`}>
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.photoName} />
       <div>
         <h3>{props.pizzaObj.name}</h3>
