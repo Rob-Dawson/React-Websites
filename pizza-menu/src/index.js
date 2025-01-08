@@ -119,10 +119,7 @@ const Footer = () => {
       <Time />
 
       {isOpen ? (
-        <div className="order">
-          <span>We are open until {closedHour}</span>
-          <button className="btn">Order</button>
-        </div>
+        <Order closedHour={closedHour} />
       ) : (
         <p>
           We will be open between {openHour} and {closedHour}
@@ -131,6 +128,15 @@ const Footer = () => {
     </footer>
   );
 };
+
+function Order({ closedHour }) {
+  return (
+    <div className="order">
+      <span>We are open until {closedHour}</span>
+      <button className="btn">Order</button>
+    </div>
+  );
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
