@@ -93,14 +93,14 @@ function Pizza({ pizzaObj }) {
   console.log(pizzaObj);
 
   return (
-    <div className={`pizza ${pizzaObj.soldOut ? "sold-out" : " "}`}>
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
       <img src={pizzaObj.photoName} alt={pizzaObj.photoName} />
       <div>
         <h3>{pizzaObj.name}</h3>
         <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price + 3}</span>
       </div>
-      <span>{pizzaObj.price + 3}</span>
-    </div>
+    </li>
   );
 }
 
@@ -127,7 +127,7 @@ const Footer = () => {
         <Order closedHour={closedHour} />
       ) : (
         <p>
-          We will be open between {openHour} and {closedHour}
+          We will be open between {openHour}:00 and {closedHour}:00
         </p>
       )}
     </footer>
