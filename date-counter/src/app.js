@@ -26,11 +26,9 @@ function Counter() {
   }
 
   function handlePrevCount() {
-    if (counter >= 1) {
-      setCounter((currentCounter) => {
-        return (currentCounter = counter - step);
-      });
-    }
+    setCounter((currentCounter) => {
+      return (currentCounter = counter - step);
+    });
   }
 
   function handleNextCount() {
@@ -60,8 +58,15 @@ function Counter() {
         <span>Counter: {counter}</span>
         <button onClick={handleNextCount}>+</button>
       </div>
-
-      <p>Today is {handleDate()}</p>
+      <div>
+        <p>
+          {counter >= 1
+            ? `${counter} days from now is ${handleDate()}`
+            : counter <= -1
+            ? `${Math.abs(counter)} days ago was ${handleDate()}`
+            : `Today is ${handleDate()}`}
+        </p>
+      </div>
     </div>
   );
 }
