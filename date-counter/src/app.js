@@ -60,11 +60,16 @@ function Counter() {
       </div>
       <div>
         <p>
-          {counter >= 1
-            ? `${counter} days from now is ${handleDate()}`
-            : counter <= -1
-            ? `${Math.abs(counter)} days ago was ${handleDate()}`
-            : `Today is ${handleDate()}`}
+          {(() => {
+            const date = handleDate();
+            if (counter > 0) {
+              return `${counter} days from now is ${date}`;
+            } else if (counter < 0) {
+              return `${Math.abs(counter)} days from ago is ${date}`;
+            } else {
+              return `Today is ${date}`;
+            }
+          })()}
         </p>
       </div>
     </div>
