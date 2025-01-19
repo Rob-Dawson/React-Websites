@@ -11,6 +11,11 @@ export default function App() {
     const [step, setStep] = useState(4);
     const [counter, setCounter] = useState(1);
 
+    function dateMessage() {
+      const date = new Date();
+      date.setTime(date.getTime());
+      return date.toDateString();
+    }
     return (
       <div>
         <div>
@@ -40,7 +45,7 @@ export default function App() {
           <button>+</button>
         </div>
         <div>
-          <p>Today is...</p>
+          <p>Today is {dateMessage()}</p>
         </div>
       </div>
     );
