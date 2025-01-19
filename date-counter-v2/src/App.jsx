@@ -13,8 +13,21 @@ export default function App() {
 
     function dateMessage() {
       const date = new Date();
-      date.setTime(date.getTime());
+      date.setDate(date.getDate() + counter);
+      console.log("datemessage", counter);
       return date.toDateString();
+    }
+
+    function handlePrevCounter() {
+      setCounter((currentCounter) => {
+        return (currentCounter = currentCounter - 1);
+      });
+    }
+
+    function handleNextCounter() {
+      setCounter((currentCounter) => {
+        return (currentCounter = currentCounter + 1);
+      });
     }
     return (
       <div>
@@ -32,17 +45,16 @@ export default function App() {
           <span>{step}</span>
         </div>
         <div>
-          <button>-</button>
+          <button onClick={handlePrevCounter}>-</button>
           <input
             type="text"
-            placeholder="0"
             value={counter}
             onChange={(e) => {
-              console.log(e.target);
-              setCounter(e.target.value);
+              setCounter(Number(e.target.value));
+              console.log(counter);
             }}
           />
-          <button>+</button>
+          <button onClick={() => setCounter((c) => c + 1)}>+</button>
         </div>
         <div>
           <p>Today is {dateMessage()}</p>
