@@ -6,11 +6,11 @@ const initialItems = [
   { id: 5, description: "Wallet", quantity: 1, packed: true },
 ];
 
-export default function PackageList() {
+export default function PackageList({ items }) {
   return (
     <div className="list">
       <ul>
-        {initialItems.map((items) => (
+        {items.map((items) => (
           <Items items={items} key={items.id} />
         ))}
       </ul>
