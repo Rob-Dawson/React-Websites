@@ -8,10 +8,22 @@ export default function App() {
   );
 
   function Counter() {
-    const [step, setStep] = useState(4);
-    const [counter, setCounter] = useState(1);
+    const [step, setStep] = useState(1);
+    const [counter, setCounter] = useState(0);
 
     function dateMessage() {
+      const date = handleDate();
+
+      if (counter > 0) {
+        return `${counter} days from now is: ${date}`;
+      } else if (counter < 0) {
+        return `${Math.abs(counter)} days ago was: ${date}`;
+      } else {
+        return `Today is ${date}`;
+      }
+    }
+
+    function handleDate() {
       const date = new Date();
       date.setDate(date.getDate() + counter);
       console.log("datemessage", counter);
@@ -20,14 +32,29 @@ export default function App() {
 
     function handlePrevCounter() {
       setCounter((currentCounter) => {
-        return (currentCounter = currentCounter - 1);
+        return (currentCounter = currentCounter - step);
       });
     }
 
     function handleNextCounter() {
       setCounter((currentCounter) => {
-        return (currentCounter = currentCounter + 1);
+        return (currentCounter = currentCounter + step);
       });
+    }
+
+    function handleForm(event) {
+      const value = event.target.value;
+      if (value === "" || Number.isInteger(Number(value))) {
+        setCounter(value === "" ? "" : Number(value));
+      }
+    }
+    function handleSlider(event) {
+      setStep(Number(event.target.value));
+    }
+
+    function handleReset() {
+      setStep(1);
+      setCounter(0);
     }
     return (
       <div>
@@ -37,28 +64,25 @@ export default function App() {
             min="1"
             max="10"
             value={step}
-            onChange={(e) => {
-              setStep(e.target.value);
-              console.log(e.target);
-            }}
+            onChange={handleSlider}
           />
           <span>{step}</span>
         </div>
         <div>
           <button onClick={handlePrevCounter}>-</button>
-          <input
-            type="text"
-            value={counter}
-            onChange={(e) => {
-              setCounter(Number(e.target.value));
-              console.log(counter);
-            }}
-          />
-          <button onClick={() => setCounter((c) => c + 1)}>+</button>
+          <input type="text" value={counter} onChange={handleForm} />
+          <button onClick={handleNextCounter}>+</button>
         </div>
         <div>
-          <p>Today is {dateMessage()}</p>
+          <p>{dateMessage()}</p>
         </div>
+        {counter !== 0 || step !== 1 ? (
+          <div>
+            <button onClick={handleReset}>Reset</button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
